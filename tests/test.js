@@ -1,4 +1,4 @@
-(function(global, document, uber){
+(function(global, document){
     var toString = {}.toString,
         func = "[object Function]",
         arr = "[object Array]"
@@ -40,4 +40,4 @@
 
     global['ist'] = ist;
     global['outputResult'] = outputResult;
-})(this, document, uber);
+})(this, document);

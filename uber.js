@@ -1,6 +1,8 @@
-(function(g, d, has){
-    g.uber = {
-        isHostType: has.isHostType,
-        clearElement: has.clearElement
-    };
-})(this, document, has);
+require.def("uber", ["has/has"], (function(global){
+	return function(){
+		return global.uber = {
+			isHostType: has.isHostType,
+			clearElement: has.clearElement
+		};
+	};
+})(this));

@@ -1,4 +1,4 @@
-(function(global, has, uber){
+require.def("uber/object", ["uber", "has/has", "has/detect/object", "has/detect/bugs"], function(uber){
 
     var toString = {}.toString,
         FUNC_CLASS = "[object Function]",
@@ -178,4 +178,4 @@
     uber.mixin = mixin;
     uber.create = create;
 
-})(this, has, uber);
+});

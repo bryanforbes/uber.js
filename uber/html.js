@@ -1,4 +1,4 @@
-(function(uber, has, document){
+require.def("uber/html", ["uber", "has/has", "has/detect/css", "has/detect/bugs", "has/detect/dom"], function(uber){
 
     var STR = "string",
         getComputedStyle, getStyleProperty,
@@ -149,4 +149,4 @@
     uber.setOpacity = setOpacity;
     uber.getOpacity = getOpacity;
 
-})(uber, has, document);
+});

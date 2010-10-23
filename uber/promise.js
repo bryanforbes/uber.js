@@ -1,4 +1,4 @@
-(function(uber){
+require.def("uber/promise", ["uber"], function(uber){
 
     function Promise(){}
 
@@ -16,4 +16,4 @@
     uber.Promise = Promise;
     uber.when = when;
 
-})(uber);
+});

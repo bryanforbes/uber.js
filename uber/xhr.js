@@ -1,5 +1,4 @@
-(function(uber, has){
-
+require.def("uber/xhr", ["uber", "has/has", "has/detect/features"], function(uber){
     var getXHR;
 
     if(has("activex-enabled") !== null){
@@ -29,4 +28,4 @@
 
     uber.getXHR = getXHR;
 
-})(uber, has);
+});

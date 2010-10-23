@@ -3,21 +3,18 @@
 <head>
     <title>No Leak Test</title>
     <meta http-equiv="refresh" content="2;url=">
-    <script src="../has.js/has.js"></script>
-    <script src="../has.js/detect/array.js"></script>
-    <script src="../has.js/detect/strings.js"></script>
-    <script src="../has.js/detect/bugs.js"></script>
-    <script src="../has.js/detect/dom.js"></script>
-    <script src="../has.js/detect/events.js"></script>
-    <script src="../uber.js"></script>
-    <script src="../src/promise.js"></script>
-    <script src="../src/deferred.js"></script>
-    <script src="../src/dom.js"></script>
-    <script src="../src/dom-event.js"></script>
-</head>
-<body>
-    <script type="text/javascript">
-        (function() {
+    <script>
+        var require = {
+            paths: {
+                "has": "../has.js",
+                "uber": "../uber"
+            }
+        };
+    </script>
+    <script src="../requirejs/require.js"></script>
+
+	<script>
+		require(["uber", "uber/dom-event"], function(uber){
             var i =-1, l = 1000;
             while (++i < l) {
                 (function(i) {
@@ -25,7 +22,10 @@
                     uber.listen(e, "onclick", function(){});
                 })(i);
             }
-        })();
-    </script>
+		});
+	</script>
+
+</head>
+<body>
 </body>
 </html>

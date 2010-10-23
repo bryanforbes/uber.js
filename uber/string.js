@@ -1,4 +1,4 @@
-(function(uber, has){
+require.def("uber/string", ["uber", "has/has", "has/detect/strings", "has/detect/bugs"], function(uber){
 
     var trim;
 
@@ -24,4 +24,4 @@
 
     uber.trim = trim;
 
-})(uber, has);
+});

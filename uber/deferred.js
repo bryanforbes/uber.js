@@ -1,5 +1,4 @@
-(function(uber, has){
-
+require.def("uber/deferred", ["uber", "uber/promise"], function(uber){
     var FN = "function";
 
     var freeze = Object.freeze || function(){};
@@ -123,5 +122,4 @@
     Deferred.prototype = new uber.Promise;
     Deferred.prototype.constructor = Deferred;
     uber.Deferred = Deferred;
-
-})(uber, has);
+});

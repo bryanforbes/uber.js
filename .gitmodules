@@ -1,3 +1,6 @@
 [submodule "has.js"]
 	path = has.js
 	url = git://github.com/phiggins42/has.js.git
+[submodule "requirejs"]
+	path = requirejs
+	url = git://github.com/jrburke/requirejs.git

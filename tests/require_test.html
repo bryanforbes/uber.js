@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>RequireJS Test</title>
+    <script>
+        var require = {
+            paths: {
+                "has": "../has.js",
+                "uber": "../uber"
+            }
+        };
+    </script>
+    <script src="../requirejs/require.js"></script>
+    <script>
+        require(["uber/deferred", "uber/array", "uber/object", "uber/dispatcher", "uber/dom", "uber/function", "uber/html", "uber/string", "uber/dom-event", "uber/xhr"]);
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,4 +1,4 @@
-(function(uber, has){
+require.def("uber/array", ["uber", "has/has", "has/detect/array"], function(uber){
 
     var aslice = [].slice,
         toArray, indexOf, lastIndexOf, every, some,
@@ -66,9 +66,23 @@
     }else{
         lastIndexOf = function lastIndexOf(arr, searchElement, fromIndex){
             var result = -1,
-                l = arr.length,
-                n = fromIndex >>> 0,
-                k, item;
+                l = arr.length >>> 0;
+            if(l <= 0){
+                return result;
+            }
+
+            // Adapted from John-David Dalton
+            var n = +fromIndex; // Number(fromIndex)
+            if(isNaN(n)){
+                n = l;
+            }else if(n !== 0 && !isFinite(n)){
+                // avoid issues with numbers larger than
+                // Math.pow(2, 31) against bitwise operators
+                n = Math.abs(n) < 2147483648 ? n | 0 : n - (n % 1)
+            }
+            // End Adaptation
+
+            var k, item;
             if(l > 0){
                 if(n>=0){
                     k = Math.min(n, l-1);
@@ -262,4 +276,4 @@
     uber.reduce = reduce;
     uber.reduceRight = reduceRight;
 
-})(uber, has);
+});

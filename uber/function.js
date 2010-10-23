@@ -1,4 +1,4 @@
-(function(uber, has, global){
+require.def("uber/function", ["uber", "has/has", "has/detect/function"], function(uber){
     var STR = "string",
         FN = "function",
         bind
@@ -33,4 +33,4 @@
     uber.bind = bind;
     uber.curry = curry;
 
-})(uber, has, this);
+});

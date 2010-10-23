@@ -14,7 +14,7 @@ require.def("uber/pubsub", ["uber", "uber/dispatcher"], (function(global){
         function publish(topic, args){
             var f = uber._topics[topic];
             if(f){
-                f.apply(this, args||[]);
+                f.apply(global, args||[]);
             }
         }
 

@@ -67,7 +67,7 @@ require.def("uber/array", ["uber", "has/has", "has/detect/array"], function(uber
         lastIndexOf = function lastIndexOf(arr, searchElement, fromIndex){
             var result = -1,
                 l = arr.length >>> 0;
-            if(l <= 0){
+            if(l<=0){
                 return result;
             }
 
@@ -78,25 +78,23 @@ require.def("uber/array", ["uber", "has/has", "has/detect/array"], function(uber
             }else if(n !== 0 && !isFinite(n)){
                 // avoid issues with numbers larger than
                 // Math.pow(2, 31) against bitwise operators
-                n = Math.abs(n) < 2147483648 ? n | 0 : n - (n % 1)
+                n = Math.abs(n) < 2147483648 ? n | 0 : n - (n % 1);
             }
-            // End Adaptation
+            // End adaptation
 
             var k, item;
-            if(l > 0){
-                if(n>=0){
-                    k = Math.min(n, l-1);
-                }else{
-                    k = l - Math.abs(n);
+            if(n>=0){
+                k = Math.min(n, l-1);
+            }else{
+                k = l - Math.abs(n);
+            }
+            while(k>=0){
+                item = arr[k];
+                if((k in arr) && searchElement === item){
+                    result = k;
+                    break;
                 }
-                while(k>=0){
-                    item = arr[k];
-                    if((k in arr) && searchElement === item){
-                        result = k;
-                        break;
-                    }
-                    k--;
-                }
+                k--;
             }
             return result;
         };

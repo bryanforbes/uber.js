@@ -23,6 +23,7 @@
 			"uber/dom-event",
 			"uber/html",
 			"uber/dispatcher",
+			"uber/pubsub",
 			"test.js"
 		], function(){
 			outputResult("indexOf", ist(uber.indexOf([1,2,2,3], 2), 1));
@@ -162,6 +163,39 @@
 				c.cancel();
 				a.foo();
 				outputResult("connect, one last time", originalCalled && !bCalled && !cCalled);
+			})();
+
+			(function(){
+				var aCalled, bCalled, cCalled, dCalled;
+				var a = uber.subscribe("some:foo", function(args){ aCalled = true; });
+				var b = uber.subscribe("some:foo", function(args){ bCalled = true; });
+				var c = uber.subscribe("some:foo", function(args){ cCalled = true; });
+				var d = uber.subscribe("some:other:foo", function(args){ dCalled = true; });
+
+				aCalled = bCalled = cCalled = dCalled = false;
+				uber.publish("some:foo");
+				outputResult("pubsub", aCalled && bCalled && cCalled && !dCalled);
+
+				aCalled = bCalled = cCalled = dCalled = false;
+				b.pause();
+				uber.publish("some:foo");
+				outputResult("pubsub, again", aCalled && !bCalled && cCalled && !dCalled);
+
+				aCalled = bCalled = cCalled = dCalled = false;
+				uber.publish("some:other:foo");
+				outputResult("pubsub, once more", !aCalled && !bCalled && !cCalled && dCalled);
+
+				aCalled = bCalled = cCalled = dCalled = false;
+				b.resume();
+				uber.publish("some:foo");
+				outputResult("pubsub, another time", aCalled && bCalled && cCalled && !dCalled);
+
+				aCalled = bCalled = cCalled = dCalled = false;
+				a.cancel();
+				b.cancel();
+				c.cancel();
+				uber.publish("some:foo");
+				outputResult("pubsub, one last time", !aCalled && !bCalled && !cCalled && !dCalled);
 			})();
 
 			(function(){

@@ -7,7 +7,7 @@ require.def("uber/object", ["uber", "has/has", "has/detect/object", "has/detect/
         NUM_CLASS = "[object Number]",
         RE_CLASS = "[object RegExp]",
         PROTO = "__proto__",
-        hasKey, forIn, mixin, create
+        hasKey, keys, forIn, mixin, create
     ;
 
     function isFunction(obj){
@@ -62,6 +62,20 @@ require.def("uber/object", ["uber", "has/has", "has/detect/object", "has/detect/
                     : obj[prop] !== op[prop]);
             };
         }
+    }
+
+    if(has("object-keys")){
+        keys = function keys(obj){
+            return Object.keys(obj);
+        };
+    }else{
+        keys = function keys(obj){
+            var k = [];
+            uber.forIn(obj, function(prop, propName){
+                k.push(propName);
+            });
+            return k;
+        };
     }
 
     if(has("bug-dontenum-enumerable")){
@@ -174,6 +188,7 @@ require.def("uber/object", ["uber", "has/has", "has/detect/object", "has/detect/
     uber.isNumber = isNumber;
     uber.isRegExp = isRegExp;
     uber.hasKey = hasKey;
+    uber.keys = keys;
     uber.forIn = forIn;
     uber.mixin = mixin;
     uber.create = create;
